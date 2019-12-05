@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div id="main">
+    {% include 'navbar.html' %}
+        <div class="container">
+            <br>
+                <h4 class="text-white bg-info col-md-12" style="border-radius: 15px 15px 15px 15px">
+                    Signup
+                </h4>
+            <br>
+            <li class="alert alert-warning alert-dismissible fade show" role="alert" v-if="message">
+                <% message %>
+                <button type="button" class="close" @click="message = ''">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </li>
+
+                
+                <div class="form-group col-sm-8">
+                    <label for="emailInput">E-Mail</label>
+                    <input type="email" class="form-control" id="otpInput" aria-describedby="emailHelp" placeholder="example@yourmail.com" v-model="email">
+                    <small id="emailHelp" class="form-text text-muted">Please your E-mail</small>
+                </div>
+
+                <div class="form-group col-sm-8">
+                    <label for="phoneInput">Phone</label>
+                    <input type="text" class="form-control" id="otpInput" aria-describedby="phoneHelp" placeholder="99999999" v-model="phone">
+                    <small id="phoneHelp" class="form-text text-muted">Please your Phone number</small>
+                </div>
+                
+                <div class="form-group col-sm-8">
+                    <label for="first_nameInput">First Name</label>
+                    <input type="text" class="form-control" id="otpInput" aria-describedby="first_nameHelp" placeholder="Alan" v-model="first_name">
+                    <small id="first_nameHelp" class="form-text text-muted">Please your First Name</small>
+                </div>
+                
+                <div class="form-group col-sm-8">
+                    <label for="last_nameInput">Last Name</label>
+                    <input type="text" class="form-control" id="otpInput" aria-describedby="last_nameHelp" placeholder="Walker" v-model="last_name">
+                    <small id="last_nameHelp" class="form-text text-muted">Please your Last Name</small>
+                </div>
+
+                Gender
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="maleRadio" v-model="gender" value="M" checked>
+                    <label class="form-check-label" for="maleRadio">
+                        Male
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="femailRadio" v-model="gender" value="F">
+                    <label class="form-check-label" for="femailRadio">
+                        Female
+                    </label>
+                </div>
+                <br/>
+                <div class="form-group col-sm-8">
+                    <button type="submit" class="btn btn-primary" @click="signup()">Signup</button>
+                </div>
+                <br/>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <script type="application/javascript" src="{% static 'signup.js' %}"></script>
+{% endblock %}
+
+    

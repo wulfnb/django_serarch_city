@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+    <div id="app">
+        {% include 'navbar.html' %}
+        {% include 'messages.html' %}
+        <div class="container">
+            <br>
+            <br>
+            
+            <div style="padding-top:50px;">
+                    <autocomplete :suggestions="cities" :selection.sync="value"> </autocomplete>
+            </div>
+            <br>
+            
+            <div v-if="page.details" class="row">
+                <hr>
+                <h4 class="text-white bg-info col-md-12" style="border-radius: 15px 15px 15px 15px">
+                    Country Details
+                </h4>
+                <table class="table">
+
+                    <tbody>
+                        <tr>
+                            <td>Country Name</td>
+                            <td><% country_details.name %></td>
+                        </tr>
+                        <tr>
+                            <td>Continent</td>
+                            <td><% country_details.continent %></td>
+                        </tr>
+                        <tr>
+                            <td>Region</td>
+                            <td><% country_details.region %></td>
+                        </tr>
+                        <tr>
+                            <td>Surface Area</td>
+                            <td><% country_details.surface_area %></td>
+                        </tr>
+                        <tr>
+                            <td>Indipendance Year</td>
+                            <td><% country_details.indep_year %></td>
+                        </tr>
+                        <tr>
+                            <td>Population</td>
+                            <td><% country_details.population %></td>
+                        </tr>
+                        <tr>
+                            <td>Life expetency</td>
+                            <td><% country_details.life_expetency %></td>
+                        </tr>
+                        <tr>
+                            <td>GNP</td>
+                            <td><% country_details.gnp %></td>
+                        </tr>
+                        <tr>
+                            <td>GNP Old</td>
+                            <td><% country_details.gnp_old %></td>
+                        </tr>
+                        <tr>
+                            <td>Local Name</td>
+                            <td><% country_details.local_name %></td>
+                        </tr>
+                        <tr>
+                            <td>Government Form</td>
+                            <td><% country_details.government_form %></td>
+                        </tr>
+                        <tr>
+                            <td>Head of state</td>
+                            <td><% country_details.head_of_state %></td>
+                        </tr>
+                        <tr>
+                            <td>Capital</td>
+                            <td><% country_details.capital %></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 class="text-white bg-info col-md-12" style="border-radius: 15px 15px 15px 15px">
+                    Languages
+                </h4>
+                <div class="card border-secondary mb-3" v-for="(language,key) in country_details.languages">
+                    <div class="card-header">
+                        <% key %>
+                    </div>
+                    
+                    <div class="card-body text-secondary">
+                        <h5 class="card-title">Percentage : <% language.percentage %></h5>
+                        <p class="card-text">Is Official : 
+                            <span v-if="language.is_official == 'T'">Yes</span>
+                            <span v-else>No</span>
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="col-md-12 col-md-offset-3">
+
+                    <ul class="list-group">
+                        <li class="list-group-item active">City's</li>
+                        <li class="list-group-item" v-for="(city,key) in country_details.city"> <b><% key %></b> - 
+                        District: <i><% city.district %></i>
+                        (Population <% city.population %>)</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Component template -->
+    <script type="text/x-template" id="template-autosuggest">
+        <div style="position:relative" v-bind:class="{'open':openSuggestion}">
+            <input class="form-control" type="text" v-model="entered"
+                @input = 'change'
+                placeholder="Search.."
+            />
+            <li v-for="(suggestion,key) in matches"
+                @click="suggestionClick(key,suggestion.code)"
+                v-show="open" class="li">
+                <% suggestion.city__name %>, <% suggestion.name %>, (<% suggestion.languages__language %>)
+            </li>
+        </div>
+    </script>
+{% endblock %}
+    
+    
+{% block footer %}
+    <script type="application/javascript" src="{% static 'dashboard.js' %}"></script>
+{% endblock %}

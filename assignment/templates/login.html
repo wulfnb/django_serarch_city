@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div id="main">
+    {% include 'navbar.html' %}
+    <div class="container">
+        <br>
+            <h4 class="text-white bg-info col-md-12" style="border-radius: 15px 15px 15px 15px">
+                Login
+            </h4>
+        <br>
+        <li class="alert alert-warning alert-dismissible fade show" role="alert" v-if="message">
+            <% message %>
+            <button type="button" class="close" @click="message = ''">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </li>
+        <br>
+        <div v-show="page.email">
+                <div class="form-group col-sm-8">
+                    <label for="emailInput">E-Mail</label>
+                    <input type="email" class="form-control" id="otpInput" aria-describedby="emailHelp" placeholder="Enter Your Email" v-model="email">
+                    <small id="emailHelp" class="form-text text-muted">Please your E-mail Registered Email</small>
+                </div>
+                <div class="form-group col-sm-8">
+                    <button type="submit" class="btn btn-primary" @click="login()">Send OTP</button>
+                </div>
+        </div>
+        <div v-show="page.otp">
+
+            <div class="form-group col-sm-3">
+                <label for="otpInput">OTP</label>
+                <input type="text" class="form-control" id="otpInput" aria-describedby="otpHelp" placeholder="Enter OTP" v-model="otp">
+                <small id="otpHelp" class="form-text text-muted">Please check your E-mail for OTP</small>
+            </div>
+            <div class="form-group col-sm-3">
+                <button type="submit" class="btn btn-primary" @click="validate_otp()">Login with OTP</button>
+            </div>
+        </div>
+</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+    <script type="application/javascript" src="{% static 'login.js' %}"></script>
+{% endblock %}
+
+    

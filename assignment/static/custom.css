@@ -1,0 +1,40 @@
+.footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #ff6666;
+            color: white;
+            text-align: center;
+        }
+
+        *, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  background-color: #dcdde1;
+  color: #2f3640;
+  /* padding: 3rem; */
+}
+
+.search-location {
+  display: block;
+  width: 60vw;
+  margin: 0 auto;
+  margin-top: 5vw;
+  font-size: 20px;
+  font-weight: 400;
+  outline: none;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.li {
+    list-style-type: none;
+    cursor: pointer;
+}
